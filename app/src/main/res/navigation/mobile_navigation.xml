@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.offshop.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_description"
+            app:destination="@id/navigation_description" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_cart"
+            app:destination="@id/navigation_cart" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_info"
+            app:destination="@id/navigation_info" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.example.offshop.ui.cart.CartFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_navigation_cart_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name=""
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_register"
+            app:destination="@id/navigation_register" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name=""
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_navigation_register_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_splash"
+        android:name="com.example.offshop.ui.splash.SplashFragment"
+        android:label="@string/title_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_navigation_splash_to_navigation_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_description"
+        android:name="com.example.offshop.ui.description.DescriptionFragment"
+        android:label="@string/title_description"
+        tools:layout="@layout/fragment_description">
+        <action
+            android:id="@+id/action_navigation_description_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.example.offshop.ui.info.InfoFragment"
+        android:label="@string/title_info"
+        tools:layout="@layout/fragment_info">
+        <action
+            android:id="@+id/action_navigation_info_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+</navigation>

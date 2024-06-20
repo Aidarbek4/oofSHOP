@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingVertical="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginRight="10dp">
+            
+            <ImageView
+                android:id="@+id/orderImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/washmachine"
+                android:scaleType="centerCrop"/>
+            
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingVertical="6dp">
+
+            <TextView
+                android:id="@+id/orderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washmachine BEKO WCB75708"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/orderItemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 350"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:textSize="12dp"
+                app:layout_constraintTop_toBottomOf="@id/orderName"
+                app:layout_constraintStart_toStartOf="parent"/>
+            
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="parent">
+                
+                <TextView
+                    android:id="@+id/orderPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="$ 700"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="left"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                
+               <androidx.cardview.widget.CardView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:cardCornerRadius="10dp"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent">
+
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:layout_width="80dp"
+                       android:layout_height="24dp"
+                       android:layout_gravity="right"
+                       android:background="@color/light_gray">
+
+                       <ImageButton
+                           android:id="@+id/decrease"
+                           android:layout_width="24dp"
+                           android:layout_height="24dp"
+                           android:src="@drawable/decrease"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintBottom_toBottomOf="parent"/>
+
+                       <TextView
+                           android:id="@+id/orderItemQuantity"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:text="2"
+                           android:textColor="@color/black"
+                           android:textStyle="bold"
+                           android:textAlignment="center"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintBottom_toBottomOf="parent"/>
+
+                       <ImageButton
+                           android:id="@+id/increase"
+                           android:layout_width="24dp"
+                           android:layout_height="24dp"
+                           android:src="@drawable/increase"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintBottom_toBottomOf="parent"/>
+
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+               </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>
