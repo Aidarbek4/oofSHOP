@@ -19,10 +19,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private List<CartItem> cartItemList;
     private OnCartEmptyListener onCartEmptyListener;
+    private ProductAdapter productAdapter;
 
     public CartAdapter(List<CartItem> cartItemList, OnCartEmptyListener listener) {
         this.cartItemList = cartItemList;
         this.onCartEmptyListener = listener;
+
+
         notifyCartEmpty();
     }
 
@@ -67,7 +70,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             imageView = itemView.findViewById(R.id.orderImage);
             nameTextView = itemView.findViewById(R.id.orderName);
             priceTextView = itemView.findViewById(R.id.orderPrice);
-            quantityTextView = itemView.findViewById(R.id.orderItemQuantity);
         }
 
         public void bind(CartItem cartItem) {
@@ -82,8 +84,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             quantityTextView.setText("Quantity: " + cartItem.getQuantity());
         }
     }
+    public interface OnQuantityChangedListener {
+        void onQuantityIncreased(int position);
+        void onQuantityDecreased(int position);
+    }
 
-    // Интерфейс для уведомления о пустоте корзины
     public interface OnCartEmptyListener {
         void onCartEmpty(boolean isEmpty);
     }

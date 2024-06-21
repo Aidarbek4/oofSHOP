@@ -41,17 +41,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/orderItemPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$ 350"
-                android:textStyle="bold"
-                android:textColor="@color/blue"
-                android:textSize="12dp"
-                app:layout_constraintTop_toBottomOf="@id/orderName"
-                app:layout_constraintStart_toStartOf="parent"/>
-            
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,44 +65,7 @@
                    android:layout_height="wrap_content"
                    app:cardCornerRadius="10dp"
                    app:layout_constraintTop_toTopOf="parent"
-                   app:layout_constraintEnd_toEndOf="parent">
-
-                   <androidx.constraintlayout.widget.ConstraintLayout
-                       android:layout_width="80dp"
-                       android:layout_height="24dp"
-                       android:layout_gravity="right"
-                       android:background="@color/light_gray">
-
-                       <ImageButton
-                           android:id="@+id/decrease"
-                           android:layout_width="24dp"
-                           android:layout_height="24dp"
-                           android:src="@drawable/decrease"
-                           app:layout_constraintStart_toStartOf="parent"
-                           app:layout_constraintBottom_toBottomOf="parent"/>
-
-                       <TextView
-                           android:id="@+id/orderItemQuantity"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:text="2"
-                           android:textColor="@color/black"
-                           android:textStyle="bold"
-                           android:textAlignment="center"
-                           app:layout_constraintTop_toTopOf="parent"
-                           app:layout_constraintBottom_toBottomOf="parent"/>
-
-                       <ImageButton
-                           android:id="@+id/increase"
-                           android:layout_width="24dp"
-                           android:layout_height="24dp"
-                           android:src="@drawable/increase"
-                           app:layout_constraintEnd_toEndOf="parent"
-                           app:layout_constraintBottom_toBottomOf="parent"/>
-
-                   </androidx.constraintlayout.widget.ConstraintLayout>
-
-               </androidx.cardview.widget.CardView>
+                   app:layout_constraintEnd_toEndOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

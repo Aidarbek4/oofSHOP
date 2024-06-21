@@ -15,6 +15,9 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public CartItem(String name, String image, double price, int quantity) {
+    }
+
     public int getId() {
         return id;
     }

@@ -2,85 +2,91 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/navigation_splash"
+    app:startDestination="@id/splashFragment">
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.offshop.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.offshop.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.offshop.ui.splash.SplashFragment"
+        android:label="SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.offshop.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_navigation_description"
-            app:destination="@id/navigation_description" />
+            android:id="@+id/action_navigation_home_to_productDesFragment"
+            app:destination="@id/productDesFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_info"
+            app:destination="@id/navigation_info" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_cart"
             app:destination="@id/navigation_cart" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_info"
-            app:destination="@id/navigation_info" />
+            android:id="@+id/action_navigation_home_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
+
 
     <fragment
         android:id="@+id/navigation_cart"
         android:name="com.example.offshop.ui.cart.CartFragment"
-        android:label="@string/title_cart"
-        tools:layout="@layout/fragment_cart">
+        android:label="CartFragment"
+        tools:layout="fragment_cart" >
         <action
             android:id="@+id/action_navigation_cart_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_login"
-        android:name=""
-        android:label="@string/title_login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_navigation_login_to_navigation_register"
-            app:destination="@id/navigation_register" />
-        <action
-            android:id="@+id/action_navigation_login_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_register"
-        android:name=""
-        android:label="@string/title_register"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_navigation_register_to_navigation_login"
-            app:destination="@id/navigation_login" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_splash"
-        android:name="com.example.offshop.ui.splash.SplashFragment"
-        android:label="@string/title_splash"
-        tools:layout="@layout/fragment_splash">
-        <action
-            android:id="@+id/action_navigation_splash_to_navigation_login"
-            app:destination="@id/navigation_login" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_description"
-        android:name="com.example.offshop.ui.description.DescriptionFragment"
-        android:label="@string/title_description"
-        tools:layout="@layout/fragment_description">
-        <action
-            android:id="@+id/action_navigation_description_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-
     <fragment
         android:id="@+id/navigation_info"
         android:name="com.example.offshop.ui.info.InfoFragment"
-        android:label="@string/title_info"
-        tools:layout="@layout/fragment_info">
+        android:label="InfoFragment"
+        tools:layout="fragment_info" >
         <action
             android:id="@+id/action_navigation_info_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDesFragment"
+        android:name="com.example.offshop.ui.home.ProductDesFragment"
+        android:label="fragment_product_des"
+        tools:layout="@layout/fragment_product_des" >
+        <action
+            android:id="@+id/action_productDesFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.offshop.ui.description.DescriptionFragment"
+        android:label="DescriptionFragment" >
+        <action
+            android:id="@+id/action_descriptionFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
 

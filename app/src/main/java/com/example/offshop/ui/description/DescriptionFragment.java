@@ -1,6 +1,7 @@
 package com.example.offshop.ui.description;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,20 @@ public class DescriptionFragment extends Fragment {
 
         productService = RetrofitClient.getInstance().getApi();
 
-        // Получение аргумента (id продукта) из Bundle
         if (getArguments() != null) {
-            String productId = getArguments().getString("productId");
-            if (productId != null) {
-                loadProduct(productId);
+            Product product = getArguments().getParcelable("product");
+            if (product != null) {
+                Glide.with(requireContext())
+                        .load(product.getImage())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.error_placeholder)
+                        .into(binding.descriptionImage);
+                Log.d("product", product.toString());
+                binding.titelDes.setText(product.getTitle());
+                binding.descriptionText.setText(product.getDescription());
+                binding.descriptionPrice.setText(String.valueOf(product.getPrice()));
+
+
             }
         }
 

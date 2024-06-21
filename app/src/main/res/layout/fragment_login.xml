@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/backgroundintroblur">
+    android:background="@drawable/backgroundintroblur"
+    tools:context=".ui.login.LoginFragment">
+
 
     <ImageView
         android:id="@+id/logo"
@@ -27,19 +29,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            android:layout_marginBottom="10dp"/>
+
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Login"
             android:textColor="@color/black"
             android:textSize="36dp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"/>
-        
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="340dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -49,15 +66,14 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginEmail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Email"
+                android:layout_height="wrap_content"
                 android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="340dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -67,9 +83,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginPassword"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Password"
-                android:textColorHint="@color/black"/>
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +98,7 @@
             app:cornerRadius="10dp"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"/>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,14 +115,5 @@
             android:textStyle="bold"/>
 
     </LinearLayout>
-
-    <ProgressBar
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout"
-        android:id="@+id/progressBarRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

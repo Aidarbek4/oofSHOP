@@ -14,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -22,6 +23,8 @@ import retrofit2.http.Path;
 public interface Api {
     @GET("api/v1/product/all")
     Call<List<Product>> getStoreProducts();
+    @GET("api/v1/product/category/{id}/")
+    Call<List<Product>> getStoreProductsByCategory(@Path("id") int categoryId);
     @POST("api/v1/product/create/")Call<Product> createNewProduct();
     @GET("api/v1/product/{id}/")
     Call<Product> getProductById(@Path("id") String productId);
@@ -37,7 +40,7 @@ public interface Api {
     @GET("api/v1/review/all")
     Call<List<Review>> getAllReviews();
     @POST("api/v1/review/create/")
-    Call<Review> createNewReview(@Body Review review);
+    Call<Void> createNewReview(@Header ("Authorization") String token, @Body String text);
     @GET("api/v1/category/all")
     Call<List<Category>> getAllCategories();
     @POST("api/v1/category/create/")

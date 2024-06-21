@@ -1,5 +1,6 @@
 package com.example.offshop.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,11 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
-    private List<CartItem> cartItemList = new ArrayList<>(); // Инициализация списка корзины
+    private List<CartItem> cartItemList = new ArrayList<>();
     private OnProductClickListener onProductClickListener;
 
     public ProductAdapter(List<Product> productList, OnProductClickListener listener) {
-        this.productList = productList != null ? productList : new ArrayList<>(); // Проверка на null и инициализация
+        this.productList = productList != null ? productList : new ArrayList<>();
         this.onProductClickListener = listener;
     }
 
@@ -47,16 +48,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
         });
 
-        MaterialButton addButton = holder.itemView.findViewById(R.id.productCardButton);
-        addButton.setOnClickListener(v -> addToCart(product));
+        holder.addButton.setOnClickListener(v -> addToCart(product));
     }
 
-    // Метод для добавления продукта в корзину
     private void addToCart(Product product) {
-        if (cartItemList == null) {
-            cartItemList = new ArrayList<>();
-        }
-
         boolean found = false;
         for (CartItem item : cartItemList) {
             if (item.getId() == product.getId()) {
@@ -71,7 +66,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             cartItemList.add(cartItem);
         }
 
-        notifyDataSetChanged();
+        // Notify listeners about cart update
+        if (onCartUpdatedListener != null) {
+            onCartUpdatedListener.onCartUpdated(cartItemList);
+        }
     }
 
     @Override
@@ -83,12 +81,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         private ImageView imageView;
         private TextView nameTextView;
         private TextView priceTextView;
+        private MaterialButton addButton;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.productImage);
             nameTextView = itemView.findViewById(R.id.productName);
             priceTextView = itemView.findViewById(R.id.productPrice);
+            addButton = itemView.findViewById(R.id.productCardButton);
         }
 
         public void bind(Product product) {
@@ -107,7 +107,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         void onProductClick(Product product);
     }
 
+    public interface OnCartUpdatedListener {
+        void onCartUpdated(List<CartItem> cartItems);
+    }
+
+    private OnCartUpdatedListener onCartUpdatedListener;
+
+    public void setOnCartUpdatedListener(OnCartUpdatedListener listener) {
+        this.onCartUpdatedListener = listener;
+    }
+
     public List<CartItem> getCartItemList() {
         return cartItemList;
+    }
+
+    public CartItem getCartItem(int position) {
+        if (position >= 0 && position < cartItemList.size()) {
+            return cartItemList.get(position);
+        }
+        return null;
     }
 }

@@ -35,41 +35,49 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/emptyCartTextView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="The Cart is empty"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/tvMyCart"
-        android:layout_marginTop="30dp"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="200dp"
+        android:layout_marginTop="60dp">
 
-    <TextView
-        android:id="@+id/tvMyCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Cart"
-        android:textSize="36dp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header"/>
+        <TextView
+            android:id="@+id/emptyCartTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Cart is empty"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvMyCart"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvMyCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Cart"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orderRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvMyCart"
-        android:padding="10dp"
-        tools:listitem="@layout/item_order"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvMyCart"
+            android:padding="10dp"
+            tools:listitem="@layout/item_order"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/calculation"
@@ -106,7 +114,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="$ 0"
+                android:text="$ 10000"
                 android:textSize="18dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -173,12 +181,13 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="$ 0"
+                android:text="$ 10000"
                 android:textSize="24dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/buyButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"

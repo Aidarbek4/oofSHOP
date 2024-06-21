@@ -19,10 +19,12 @@ import com.example.offshop.R;
 import com.example.offshop.adapters.CategoryAdapter;
 import com.example.offshop.adapters.ProductAdapter;
 import com.example.offshop.databinding.FragmentHomeBinding;
+import com.example.offshop.models.CartItem;
 import com.example.offshop.models.Category;
 import com.example.offshop.models.Product;
 import com.example.offshop.remotedata.RetrofitClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,6 +35,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
     private FragmentHomeBinding binding;
     private RecyclerView productRecyclerView, categoryRecyclerView;
+    private List<CartItem> cartItemList = new ArrayList<>();
     private ProductAdapter productAdapter;
     private CategoryAdapter categoryAdapter;
     private TextView emptyProductsView, emptyCategoriesView;
@@ -54,10 +57,15 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         categoryRecyclerView = root.findViewById(R.id.categoryRecycler);
         categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+
         fetchProducts();
         fetchCategories();
 
         return root;
+    }
+
+    public void onCartUpdated(List<CartItem> cartItems) {
+        this.cartItemList = cartItems;
     }
 
     private void fetchProducts() {
@@ -91,6 +99,15 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
                 productRecyclerView.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void onProductClick(Product product) {
+        // Передача данных при навигации
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("product", product);
+        bundle.putSerializable("cartItems", new ArrayList<>(cartItemList));
+        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_descriptionFragment, bundle);
     }
 
     private void fetchCategories() {
@@ -133,17 +150,56 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
     }
 
     // Обработка клика на продукт
-    @Override
-    public void onProductClick(Product product) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("product", product);
-        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_navigation_description, bundle);
-    }
+//    @Override
+//    public void onProductClick(Product product) {
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("product", product);
+//        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_productDesFragment, bundle);
+//    }
 
     // Обработка клика на категорию
     @Override
     public void onCategoryClick(Category category) {
         // Реализуйте логику обработки клика на категорию, например, фильтрацию продуктов
+        try {
+            Call<List<Product>> call;
+
+            if (category.getName().toLowerCase().equals("all")) {
+                call = RetrofitClient.getInstance().getApi().getStoreProducts();
+            } else {
+                call = RetrofitClient.getInstance().getApi().getStoreProductsByCategory(category.getId());
+            }
+            call.enqueue(new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Log.d(TAG, "Products fetched successfully");
+                        if (response.body().isEmpty()) {
+                            emptyProductsView.setVisibility(View.VISIBLE);
+                            productRecyclerView.setVisibility(View.GONE);
+                        } else {
+                            emptyProductsView.setVisibility(View.GONE);
+                            productRecyclerView.setVisibility(View.VISIBLE);
+                            productAdapter = new ProductAdapter(response.body(), HomeFragment.this);
+                            productRecyclerView.setAdapter(productAdapter);
+                        }
+                    } else {
+                        Log.e(TAG, "Response unsuccessful: " + response.code());
+                        emptyProductsView.setVisibility(View.VISIBLE);
+                        productRecyclerView.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Product>> call, Throwable t) {
+                    Log.e(TAG, "API call failed: ", t);
+                    emptyProductsView.setVisibility(View.VISIBLE);
+                    productRecyclerView.setVisibility(View.GONE);
+                }
+            });
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+        }
         Log.d(TAG, "Clicked category: " + category.getName());
     }
 }
